@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { messege } from 'src/utils/messege';
+import { message } from 'src/utils/message';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
@@ -23,7 +23,7 @@ export class UsersController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     this.usersService.update(id, updateUserDto)
-    return messege.upDateUser;
+    return message.upDateUser;
   }
 
   @Get(':id')
@@ -39,6 +39,6 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string, @Body('name') name: string) {
     this.usersService.remove(id)
-    return messege.deleteUser;
+    return message.deleteUser;
   }
 }

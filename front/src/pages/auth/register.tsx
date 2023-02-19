@@ -114,7 +114,7 @@ export default function register() {
             />
           </div>
           <div>
-            <div className='flex'>
+          <div className='flex justify-center'>
               <p>Have a account?</p>
               <Link  href='/auth/login' className='text-blue-700 hover:underline dark:text-blue-500 ml-2'>Sing In</Link>
             </div>

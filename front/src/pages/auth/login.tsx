@@ -1,14 +1,15 @@
 import ButtonComponent from '../../../components/buttonComponent'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import { server } from '@/server/server';
 import Router from 'next/router';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export default function Login(){
   const [buttonActive, setButtonActive] = useState(true);
   const [email, setEmail] = useState('');
   const [password,setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(()=>{
     setButtonActive(!email || !password? true: false);
@@ -32,9 +33,12 @@ export default function Login(){
         password
       });
       Router.push('/app/dashboard');
-    }catch(error){
-      console.log(error)
+    }catch(error: any){
+      const userError = error.response.data.message;
+      setErrorMessage(userError);
     };
+    setPassword('');
+    setEmail('');
   };
 
   return(
@@ -89,8 +93,9 @@ export default function Login(){
               disabled={buttonActive}
             />
           </div>
+          {errorMessage && <p className="text-center text-red-500 font-medium">{errorMessage}</p>}
           <div>
-            <div className='flex'>
+            <div className='flex justify-center'>
               <p>Not registred?</p>
               <Link  href='/auth/register' className='text-blue-700 hover:underline dark:text-blue-500 ml-2'>Create account</Link>
             </div>

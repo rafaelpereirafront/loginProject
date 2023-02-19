@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
-const messege_1 = require("../utils/messege");
+const message_1 = require("../utils/message");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -30,7 +30,7 @@ let UsersController = class UsersController {
     }
     update(id, updateUserDto) {
         this.usersService.update(id, updateUserDto);
-        return messege_1.messege.upDateUser;
+        return message_1.message.upDateUser;
     }
     findOne(id) {
         return this.usersService.findOne(id);
@@ -40,7 +40,7 @@ let UsersController = class UsersController {
     }
     remove(id, name) {
         this.usersService.remove(id);
-        return messege_1.messege.deleteUser;
+        return message_1.message.deleteUser;
     }
 };
 __decorate([
